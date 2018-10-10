@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+<title>Controle de vendas</title>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<link type="text/css" rel="stylesheet" href="estilo.css">
+<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+
+
+<script>
+function enviar(){
+document.form1.submit();
+}
+function limpar(){
+document.form1.codprod.value='';
+document.form1.codprod.focus();
+$('.confirma').hide();
+$('.corrige').hide();
+$('.qtde').hide();
+$('.invalido').hide();
+$('.valor').hide();
+}
+function enviaTroco(){
+	document.f1.submit();	
+}
+</script>
+
+
+</head>
+<body>
+<div class="container">
+
+<div class="principal">
+    <div class="cabecalho">
+        <div class="titulo">
+        Controle de vendas
+        </div>
+    </div>
+<div class="centro">
+<div class="login"><a href="novopedido.php">Novo Pedido</a></div>
+<div class="produto"><a href="inicio.php">Início</a></div>
+<div class="produto"><a href="cadproduto.php">Produtos</a></div>
+<div class="produto"><a href="estoquemin.php">Est mín</a></div>
+<div class="produto"><a href="relvendas.php">Relatório</a></div>
+<div class="produto"><a href="cadusuario.php">Usuários</a></div>	
+<div class="produto"><a href="logout.php">Sair</a></div>
+<p><br>
+
+[@conteudo]
+
+<script type="text/javascript">
+
+    $(function(){
+    
+    $('#codprod').keyup(function(){
+    
+    if( $(this).val() ) {
+    
+    $('#valor').hide();
+    $('.carregando2').show();
+    $.getJSON('buscaproduto.php?codigo=',{codigo: $(this).val(), ajax: 'true'},function(j){
+    
+    for (var i = 0; i < j.length; i++) {
+    var cand = '<p><strong>'+j[i].descricao+' - R$ '+j[i].valor+'</strong>';
+    } 
+    
+    $('#valor').html(cand).show();
+    
+    $('.carregando2').hide();
+    
+    if (j[0].valor=='invalido.png'){
+    $('.confirma').hide();	
+    $('.qtde').hide();
+    $('.corrige').show();	
+    $('#valor').html('<img src=img/'+j[0].valor+' width=80 height=50 id=invalido class=invalido>');
+    }else{
+    $('.confirma').show();
+    $('.corrige').show();
+    $('.qtde').show();
+    $('.qtde').focus();
+    }
+    });
+    
+    } else {
+    $('#valor').html('');
+    $('.confirma').hide();
+    $('.qtde').hide();
+    }
+    });
+    });
+    </script>
+
+</div>
+<div class="rodape">Controle de Vendas</div>
+</div>
+</div>
+</body>
+</html>
