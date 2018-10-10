@@ -15,17 +15,17 @@ if ($vendas->ususenha != $_POST['txtsenha2']) {
 	$pagina->set("conteudo", new Msg("Senhas diferentes"));
 	$pagina->set("rodape", "Enquete");
 	echo $pagina->show();
-	header("Refresh: 3; URL=cadusuario.php");
+	header("Refresh: 1; URL=cadusuario.php");
 	exit();
 }
 //$vendas->save();
 $vendas->ususenha = sha1($vendas->ususenha);
-if ($vendas->save($vendas->usucod)) {
+if ($vendas->save()) {
 	$pagina = new Template("template.html");
 	$pagina->set("titulo", "Obrigado.");
 	$pagina->set("conteudo", new Msg("Usuário Cadastrado com sucesso!"));
 	$pagina->set("rodape", "Enquete");
 	echo $pagina->show();
-	header("Refresh: 3; URL=cadusuario.php");
+	header("Refresh: 1; URL=cadusuario.php");
 }
 ?>

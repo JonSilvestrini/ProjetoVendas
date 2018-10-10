@@ -68,7 +68,7 @@ class Registro
         }
     } 
 
-    public function delete($id) 
+    public function delete($id) // campo=valor
     { 
         $sql = "DELETE FROM " . $this->tabela . ' WHERE '.$id; 
         try{
@@ -79,10 +79,10 @@ class Registro
         }
     } 
 
-    public function find($id=NULL) 
+    public function find($id=NULL) // campo=valor
     { 
         if($id){
-            $sql = "SELECT * FROM " . $this->tabela . ' WHERE codigo='.$id;
+            $sql = "SELECT * FROM " . $this->tabela . ' WHERE '.$id;
             $stmt=self::$con->prepare($sql);
             $stmt->execute();
             return $stmt->fetch();
