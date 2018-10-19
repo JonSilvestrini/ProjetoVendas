@@ -84,6 +84,7 @@ class Registro
         if($id){
             $sql = "SELECT * FROM " . $this->tabela . ' WHERE '.$id;
             $stmt=self::$con->prepare($sql);
+            //echo $sql;exit;
             $stmt->execute();
             return $stmt->fetch();
         }else{

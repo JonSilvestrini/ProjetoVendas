@@ -1,18 +1,22 @@
 <?php
+    require "autoload.php";
 
-require 'autoload.php';
+    //$sessao=new Sessao();
+    //$sessao->Protege("email");
+    
+    $con=Conexao::Open();
+    $enquete=new Registro("usuarios ",$con);
 
-//$sessao=new Sessao();
-//$sessao->Protege("email");
+    if($enquete->delete("usucod=$_GET[codigo]")){
+        $pagina = new Template("template.html");
+        $pagina->set("titulo", "Exclusão de usuarios");
+        $pagina->set("conteudo", new Msg("Usuarios deletados!"));
+        $pagina->set("rodape", "Exclusao de usuarios");
+        echo $pagina->show();
+        header("Refresh: 1; URL=cadusuario.php");
+    }
 
-$con = Conexao::Open();
-$vendas = new Registro("usuarios",$con);
 
-if($vendas->delete("usucod=$_GET[codigo]")){
-	$pagina = new Template('template.html');
-	$pagina->set("titulo", "Exclusão de usuários");
-	$pagina->set("conteudo", new Msg("Usuário deletado!"));
-	$pagina->set("rodape", "Exclusão de usuários");
-	echo $pagina->show();
-	header("Refresh: 3; URL=cadusuario.php");
-}
+
+
+?>
