@@ -51,6 +51,7 @@ $input_valor->name="valor";
 $input_valor->size="15";
 $input_valor->value="$row[valor]";
 
+
 $br7=new Element("br");
 $br8=new Element("br");
 
@@ -63,6 +64,7 @@ $input_estoque->name="estoque";
 $input_estoque->size="15";
 $input_estoque->value="$row[estoque]";
 
+
 $br9=new Element("br");
 $br10=new Element("br");
 
@@ -74,6 +76,7 @@ $input_min_estoque->type="text";
 $input_min_estoque->name="estoquemin";
 $input_min_estoque->size="15";
 $input_min_estoque->value="$row[estoquemin]";
+
 
 $br11=new Element("br");
 $br12=new Element("br");

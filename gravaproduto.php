@@ -17,12 +17,13 @@ if ($enquete->save()){
             $pagina->set("conteudo", new Msg("OBRIGADO PELA RESPOSTA!"));
             $pagina->set("rodape","enquete");
             echo $pagina->show();
-            header("Refresh: 1; URL=cadproduto.php");
+            header("Refresh: 1; URL=cadprodutos.php");
     
 }else {
     $pagina = new Template("template.html");
-     
+    $pagina->set("titulo","Senha diferente");
+    $pagina->set("rodape","enquete");
     echo $pagina->show();
-    header("Refresh: 1; URL=cadproduto.php");
+    header("Refresh: 1; URL=cadprodutos.php");
 }
 ?>

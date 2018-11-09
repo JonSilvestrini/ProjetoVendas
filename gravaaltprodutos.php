@@ -5,27 +5,30 @@
     //$sessao->Protege("email");
 
     $con=Conexao::Open();
-    $vendas=new Registro("produtos",$con);
-    $vendas->codigo=$_POST['codigo'];
-    $vendas->descricao=$_POST['descricao'];
-    $vendas->valor=$_POST['valor'];
-    $vendas->estoque=$_POST['estoque'];
-    $vendas->estoquemin=$_POST['estoquemin'];
+    $enquete=new Registro("produtos",$con);
+    $enquete->codigo="0";
+    $enquete->descricao=$_POST['descricao'];
+    $enquete->valor=$_POST['valor'];
+    $enquete->estoque=$_POST['estoque'];
+    $enquete->estoquemin=$_POST['estoquemin'];
     
 
 
             
-if   
-    ($vendas->save("codigo=$_POST[codigo]")){
-           // echo ;exit;
+if ($enquete->save("codigo=$_POST[codigo]")){
+           // echo "lucas2";exit;
             $pagina = new Template("template.html");
-            $pagina->set("conteudo", new Msg("Dados alterados com sucesso"));
+            $pagina->set("titulo","Produtos salvo com sucesso!");
+            $pagina->set("conteudo", new Msg("Obrigado pela resposta!"));
+            $pagina->set("rodape","enquete");
             echo $pagina->show();
-            header("Refresh: 3; URL=cadproduto.php");
+            header("Refresh: 3; URL=cadprodutos.php");
     
 }else {
     $pagina = new Template("template.html");
+    $pagina->set("titulo","Senha diferente");
+    $pagina->set("rodape","enquete");
     echo $pagina->show();
-    header("Refresh: 3; URL=cadproduto.php");
+    header("Refresh: 3; URL=cadusuario.php");
 }
 ?>
