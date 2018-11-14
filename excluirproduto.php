@@ -9,11 +9,11 @@
 
     if($enquete->delete("codigo=$_GET[codigo]")){
         $pagina = new Template("template.html");
-        $pagina->set("titulo", "Exclusão de produtos");
-        $pagina->set("conteudo", new Msg("Produtos deletados!"));
-        $pagina->set("rodape", "Exclusao de produtos");
+        $pagina->set("titulo", "Exclusão de produto");
+        $pagina->set("conteudo", new Msg("Produto deletado!"));
+        $pagina->set("rodape", "Exclusao de produto");
         echo $pagina->show();
-        header("Refresh: 1; URL=cadprodutos.php");
+        header("Refresh: 1; URL=cadproduto.php");
     }
 
 

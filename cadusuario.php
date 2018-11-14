@@ -100,7 +100,7 @@
     $linha=$tab->addRow();
     $linha->addCell('Codigo');
     $linha->addCell('Nome');
-    $linha->addCell('Senha');
+    $linha->addCell('E-mail');
 
     foreach($enquete->findAll() as $key => $dados){
         $linha=$tab->addRow();

@@ -42,5 +42,3 @@ CREATE TABLE itens (
 ALTER TABLE itens
   ADD FOREIGN KEY (codprod) REFERENCES produtos (codigo),
   add foreign key (pedido) references pedidos (codped);
-
-insert into usuarios values (0, 'Admin', 'sysadmin', '40bd001563085fc35165329ea1ff5c5ecbdbbeef');
