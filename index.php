@@ -159,9 +159,64 @@ $intotal->name="total";
 
 
 $indinheiro= new Element("input");
-$indinheiro->type="";
-$indinheiro->name="";
-$indinheiro->value="";
+$indinheiro->type="text";
+$indinheiro->name="dinheiro";
+$indinheiro->size="5";
+@$indinheiro->value="$pedidodinheiro";
 
+$insub = new Element("input");
+$insub->type="submit";
+$insub->value="Calcular Troco";
 
+$form2->add($incoped);
+$form2->add($intotal);
+$form2->add($indinheiro);
+$form2->add($insub);
+$linha->addCell($form2);
+$linha->addCell('-');
+$linha=$tab->addRow();
+$linha->addCell('-');
+$linha->addCell('-');
+$linha->addCell('-');
+$linha->addCell('Troco');
+$linha->addCell($pedidotroco);
+$linha->addCell('-');
+
+$tab2=new Table();
+$tab2->class='preco';
+$tab2->border='1';
+$tab2->width='100%';
+$linha=$tab2->addRow();
+$linha->addCell('Cod');
+$linha->addCell('Produto');
+$linha->addCell('R$');
+
+$enquete=new Registro("produtos",$con);
+foreach($enquete->findAll() as $key => $dados) {
+    $linha=$tab2->addRow();
+    $linha -> addCell($dados[0]);
+    $linha -> addCell($dados[1]);
+    $linha -> addCell($dados[2]);
+}
+
+$form->add($icodped);
+$form->add("<br><br>");
+$div2->add($label1);
+$div2->add($icodped);
+$spanvalor->add("");
+$div2->add($span3);
+$div2->add($btconf);
+$div2->add($span4);
+
+$form->add($div2);
+
+$conteudo=$form->show();
+$conteudo.=$tab->show();
+$conteudo.=$tab2->show();
+
+$pagina = new Template("template.html");
+$pagina->set("titulo", "Vendas");
+$pagina->set("conteudo", $conteudo);
+$pagina->set("rodape", "Etecleme");
+echo $pagina->show();
 ?>
